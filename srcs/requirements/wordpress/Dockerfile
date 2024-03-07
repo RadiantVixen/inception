@@ -31,6 +31,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 COPY ./conf/script.sh /
 RUN chmod 777 /script.sh
 
+# CMD ["tail", "-f"]
 # CMD ["/usr/sbin/php-fpm7.4", "-F"]
 
 CMD ["/script.sh"]
