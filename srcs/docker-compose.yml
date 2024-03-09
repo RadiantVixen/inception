@@ -2,57 +2,57 @@ version: '3.8'
 
 services:
   nginx:
-    container_name: nginx
-    build: ./requirements/nginx/.
-    image: nginx
-    ports:
-     - "443:443"
-    restart: always
-    networks:
-      - inception
-    depends_on:
-      - wordpress
-    volumes:
-      - wordpress:/var/www/wordpress
+	container_name: nginx
+	build: ./requirements/nginx/.
+	image: nginx
+	ports:
+		- "443:443"
+	restart: always
+	networks:
+		- inception
+	depends_on:
+		- wordpress
+	volumes:
+		- wordpress:/var/www/wordpress
 
   mariadb:
-    container_name: mariadb
-    build: ./requirements/mariadb/.
-    image: mariadb
-    expose:
-     - "3306"
-    networks:
-      - inception
-    restart: always
-  
+	container_name: mariadb
+	build: ./requirements/mariadb/.
+	image: mariadb
+	expose:
+		- "3306"
+	networks:
+		- inception
+	restart: always
+
   wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress/.
-    image: wordpress
-    expose:
-     - "9000"
-    networks:
-      - inception
-    depends_on:
-      - mariadb
-    volumes:
-      - wordpress:/var/www/wordpress
-    restart: always
+	container_name: wordpress
+	build: ./requirements/wordpress/.
+	image: wordpress
+	expose:
+		- "9000"
+	networks:
+		- inception
+	depends_on:
+		- mariadb
+	volumes:
+		- wordpress:/var/www/wordpress
+	restart: always
 
 networks:
   inception:
-    driver: bridge
+	driver: bridge
 
 volumes:
-  wordpress:
-    driver: local # ici nous stockons le volume en local
-    driver_opts:
-      type: 'none' 									# aucun type spécifique
-      o: 'bind'
-      device: '/home/aatki/data/wordpress' 		#Ou stocker le dossier sur votre ordinateur en local
-  # mariadb:
-    # driver: local
-    # driver_opts:
-    # type: 'none' 
-    # o: 'bind'										 # Les Bind Mounts sont des volumes qui se montent sur un chemin d'accès à l'hôte, et ils peuvent être modifiés par d'autres processus en dehors de docker.
-    # device: '/home/aatki/data/mariadb'	
+	wordpress:
+		driver: local
+		driver_opts:
+			type: 'none'
+			o: 'bind'
+			device: '/home/aatki/data/wordpress'
+	mariadb:
+		driver: local
+		driver_opts:
+			type: 'none' 
+			o: 'bind'
+			device: '/home/aatki/data/mariadb'

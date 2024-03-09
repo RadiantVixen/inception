@@ -1,15 +1,15 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y nginx openssl
+RUN apt update -y
 
-RUN mkdir -p /etc/nginx/ssl
-RUN openssl req -x509 -nodes \
--out /etc/nginx/ssl/inception.crt \
--keyout /etc/nginx/ssl/inception.key \
--subj "/C=FR/ST=IDF/L=BG/O=42/OU=42/CN=aatki.42.fr/UID=aatki"
+RUN apt install -y nginx && apt install openssl -y
 
-RUN touch /etc/nginx/conf.d/aatki.conf
+ENV CERTS_=/etc/ssl/private/nginx-selfsigned.crt
 
-COPY  ./conf/nginx.conf /etc/nginx/conf.d/aatki.conf
+ENV wp_url=aatki.42.fr
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY conf/script.sh /
+
+RUN chmod +x script.sh
+
+CMD [ "./script.sh" ]
