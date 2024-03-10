@@ -22,8 +22,8 @@ echo '  index index.php;
         }
         location ~ \.php$ {                             
             include snippets/fastcgi-php.conf;
-            fastcgi_pass wordpress:9000;            
-        }                   
+            fastcgi_pass wordpress:9000;   
+        }
     }
 '>>/etc/nginx/sites-available/default
 
