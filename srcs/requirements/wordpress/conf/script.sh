@@ -6,7 +6,7 @@ cd /var/www/html
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 
-chmod +x wp-cli.phar 
+chmod +x wp-cli.phar
 
 mv wp-cli.phar /usr/local/bin/wp
 
@@ -16,7 +16,7 @@ wp config create --allow-root \
                  --dbname=$mariaDB_DATABASE \
                  --dbuser=$mariaDB_USER \
                  --dbpass=$mariaDB_PASSWORD \
-                 --dbhost=mariadb
+                 --dbhost=mariadb:3306
 
 wp core install --url=$WP_URL/ \
                 --title=$WP_TITLE \

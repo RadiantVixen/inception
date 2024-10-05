@@ -6,7 +6,7 @@ echo "server
     {
         listen 443 ssl;
         listen [::]:443 ssl;
-        
+
         ssl_protocols TLSv1.2 TLSv1.3;
 
         ssl_certificate $CERTS_;
@@ -22,7 +22,7 @@ echo '  index index.php;
         }
         location ~ \.php$ {                             
             include snippets/fastcgi-php.conf;
-            fastcgi_pass wordpress:9000;   
+            fastcgi_pass wordpress:9000;
         }
     }
 '>>/etc/nginx/sites-available/default

@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   mariadb:
@@ -11,8 +11,6 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     restart: always
-    expose:
-      - "3306"
   nginx:
     container_name: nginx
     image: nginx
@@ -39,8 +37,6 @@ services:
     depends_on:
       - mariadb
     env_file: .env
-    expose:
-      - "9000"
     restart : always
 
 networks:
